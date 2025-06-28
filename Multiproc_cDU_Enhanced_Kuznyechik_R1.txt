@@ -1,0 +1,2666 @@
+Starting Enhanced Kuznyechik C-Differential Cryptanalysis with Increased Sensitivity...
+
+New features enabled:
+  - Sequential testing: True
+  - Clustering analysis: True
+  - Combined evidence: True
+  - Adaptive alpha: True
+  - Multiple corrections: True
+Setting up SageMath environment for one-time precomputation...
+Precomputing GF(2^8) multiplication table...
+✅ Multiplication table created.
+Precomputing L-transformation table...
+✅ L-transformation table created.
+Precomputing L-inverse-transformation table...
+✅ L-inverse-transformation table created.
+Generating Kuznyechik C_j constants...
+✅ Generated 32 Kuznyechik C_j constants.
+
+Performing Optimized Kuznyechik Key Expansion...
+
+--- Validating against RFC 7801 Test Vector ---
+Comparing generated keys with RFC 7801 expected values:
+✅ COMPLETE SUCCESS: All keys and encryption match RFC 7801!
+Generated 36 mask configurations based on curated noteworthy findings.
+
+Analysis Parameters (Enhanced Sensitivity for High Rounds):
+  - Rounds: 1, Trials/config: 5,000,000
+  - Total configs: 36, Alert thresholds: >4 sig. pairs or >2.4x bias
+  - FDR Alpha (dynamic): 5.000e-03 (more permissive for 1 rounds)
+  - Min occurrences: 4
+  - GoF Anomaly Alpha: 1.000e-03
+
+--- Running Config 1/36  ---
+  c = 0x1, byte_0_in->byte_0_out
+Starting sequential testing (max 10,000,000 trials, batch 500,000)...
+Detected 10 CPU cores. Using 10 processes for this run.
+✨ Sequential early discovery at 500,000 trials!
+   0x000000000000000000000000000000a3 → 0x00000000000000000000000000000047
+   Bias: 2.48x, LLR: 17.3, p: 7.795e-04
+   0x000000000000000000000000000000a2 → 0x0000000000000000000000000000005a
+   Bias: 1.57x, LLR: 5.4, p: 1.778e-01
+   0x00000000000000000000000000000056 → 0x0000000000000000000000000000005d
+   Bias: 2.74x, LLR: 21.2, p: 1.036e-04
+
+🔍 COMBINED EVIDENCE (strong_bias): 24949 signals
+   Config: byte_0_in->byte_0_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.50x
+
+🔍 COMBINED EVIDENCE (weak_significant): 23600 signals
+   Config: byte_0_in->byte_0_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.56x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 21846 signals
+   Config: byte_0_in->byte_0_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.64x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x1, byte_0_in->byte_0_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 27,300
+  Mean/Median/Std Dev count: 18.24 / 16.00 / 7.96
+  Max/Min count: 73 / 3
+  Skewness/Kurtosis: 1.628 / 3.295
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.947958
+  Max Chi-square: 557.41
+  Relative Entropy: 0.914
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=1163.647
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=919,795.82, P-value=0.000e+00
+  G-test (Log-likelihood): Statistic=951,810.49, P-value=0.000e+00
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 1 significant
+  Cluster 1: 27298 members, combined p=0.000e+00, avg bias=2.38x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.021e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  Found 10909 significant pairs. Top 10 by corrected p-value:
+  Input Diff (A)                    Output Diff (B)                   Obs Count  Bias     Corr P-val  
+  --------------------------------- --------------------------------- ---------- -------- ------------
+  0x00000000000000000000000000000076 0x0000000000000000000000000000006b 47         6.1     x 0.00e+00
+  0x0000000000000000000000000000000e 0x00000000000000000000000000000082 52         6.8     x 0.00e+00
+  0x00000000000000000000000000000046 0x00000000000000000000000000000089 50         6.5     x 0.00e+00
+  0x00000000000000000000000000000085 0x000000000000000000000000000000cf 50         6.5     x 0.00e+00
+  0x00000000000000000000000000000026 0x00000000000000000000000000000055 57         7.4     x 0.00e+00
+  0x000000000000000000000000000000da 0x000000000000000000000000000000d9 49         6.4     x 0.00e+00
+  0x00000000000000000000000000000012 0x00000000000000000000000000000052 50         6.5     x 0.00e+00
+  0x0000000000000000000000000000003d 0x00000000000000000000000000000028 46         6.0     x 0.00e+00
+  0x00000000000000000000000000000012 0x00000000000000000000000000000035 46         6.0     x 0.00e+00
+  0x0000000000000000000000000000008f 0x0000000000000000000000000000002c 62         8.1     x 0.00e+00
+================================================================================
+
+*** NON-RANDOMNESS ANOMALY DETECTED (Global Distribution) ***
+    Config: byte_0_in->byte_0_out, c=0x1, Rounds: 1
+    The overall distribution of output differentials is NOT UNIFORM.
+    G-test p-value: 0.000e+00 is less than the threshold of 1.000e-03.
+    This provides strong statistical evidence of a non-random property for this configuration.
+
+⚠️  BIAS PERSISTENCE ANOMALY for 1 rounds
+    Config: byte_0_in->byte_0_out, c=0x1
+    Observed bias: 9.53x vs Expected: 0.794x
+    Ratio: 12.0x higher than expected decay
+
+🚨 CRITICAL ALERT: Statistically significant characteristic found for 1 rounds!
+   Config: byte_0_in->byte_0_out, c=0x1
+   Found 10909 significant pairs (threshold: 4).
+     - Input 0x00000000000000000000000000000076 -> Output 0x0000000000000000000000000000006b (Bias: 6.1, p-val: 0.00e+00)
+     - Input 0x0000000000000000000000000000000e -> Output 0x00000000000000000000000000000082 (Bias: 6.8, p-val: 0.00e+00)
+     - Input 0x00000000000000000000000000000046 -> Output 0x00000000000000000000000000000089 (Bias: 6.5, p-val: 0.00e+00)
+     - Input 0x00000000000000000000000000000085 -> Output 0x000000000000000000000000000000cf (Bias: 6.5, p-val: 0.00e+00)
+     - Input 0x00000000000000000000000000000026 -> Output 0x00000000000000000000000000000055 (Bias: 7.4, p-val: 0.00e+00)
+
+--- Running Config 2/36 ETA: 64.1 min ---
+  c = 0x1, byte_12_in->byte_12_out
+Starting sequential testing (max 10,000,000 trials, batch 500,000)...
+Detected 10 CPU cores. Using 10 processes for this run.
+✨ Sequential early discovery at 500,000 trials!
+   0x000000bb000000000000000000000000 → 0x000000e1000000000000000000000000
+   Bias: 2.61x, LLR: 19.2, p: 2.907e-04
+   0x0000009e000000000000000000000000 → 0x0000007e000000000000000000000000
+   Bias: 6.66x, LLR: 96.7, p: 0.000e+00
+   0x0000007a000000000000000000000000 → 0x000000d6000000000000000000000000
+   Bias: 3.00x, LLR: 25.3, p: 1.153e-05
+
+🔍 COMBINED EVIDENCE (strong_bias): 24942 signals
+   Config: byte_12_in->byte_12_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.50x
+
+🔍 COMBINED EVIDENCE (weak_significant): 23589 signals
+   Config: byte_12_in->byte_12_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.56x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 21829 signals
+   Config: byte_12_in->byte_12_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.64x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x1, byte_12_in->byte_12_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 27,300
+  Mean/Median/Std Dev count: 18.24 / 16.00 / 7.94
+  Max/Min count: 78 / 2
+  Skewness/Kurtosis: 1.669 / 3.700
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.947137
+  Max Chi-square: 645.99
+  Relative Entropy: 0.914
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=1140.591
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=918,494.60, P-value=0.000e+00
+  G-test (Log-likelihood): Statistic=951,111.38, P-value=0.000e+00
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 1 significant
+  Cluster 1: 27299 members, combined p=0.000e+00, avg bias=2.38x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.021e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  Found 10990 significant pairs. Top 10 by corrected p-value:
+  Input Diff (A)                    Output Diff (B)                   Obs Count  Bias     Corr P-val  
+  --------------------------------- --------------------------------- ---------- -------- ------------
+  0x0000009e000000000000000000000000 0x0000007e000000000000000000000000 51         6.7     x 0.00e+00
+  0x00000076000000000000000000000000 0x000000b1000000000000000000000000 48         6.3     x 0.00e+00
+  0x000000ad000000000000000000000000 0x0000004d000000000000000000000000 55         7.2     x 0.00e+00
+  0x0000006c000000000000000000000000 0x0000005f000000000000000000000000 77         10.1    x 0.00e+00
+  0x00000082000000000000000000000000 0x00000072000000000000000000000000 41         5.4     x 0.00e+00
+  0x0000001a000000000000000000000000 0x0000007f000000000000000000000000 43         5.6     x 0.00e+00
+  0x000000c7000000000000000000000000 0x0000008b000000000000000000000000 43         5.6     x 0.00e+00
+  0x00000002000000000000000000000000 0x000000dc000000000000000000000000 47         6.1     x 0.00e+00
+  0x00000037000000000000000000000000 0x0000005a000000000000000000000000 55         7.2     x 0.00e+00
+  0x000000f7000000000000000000000000 0x0000000a000000000000000000000000 41         5.4     x 0.00e+00
+================================================================================
+
+*** NON-RANDOMNESS ANOMALY DETECTED (Global Distribution) ***
+    Config: byte_12_in->byte_12_out, c=0x1, Rounds: 1
+    The overall distribution of output differentials is NOT UNIFORM.
+    G-test p-value: 0.000e+00 is less than the threshold of 1.000e-03.
+    This provides strong statistical evidence of a non-random property for this configuration.
+
+⚠️  BIAS PERSISTENCE ANOMALY for 1 rounds
+    Config: byte_12_in->byte_12_out, c=0x1
+    Observed bias: 10.18x vs Expected: 0.794x
+    Ratio: 12.8x higher than expected decay
+
+🚨 CRITICAL ALERT: Statistically significant characteristic found for 1 rounds!
+   Config: byte_12_in->byte_12_out, c=0x1
+   Found 10990 significant pairs (threshold: 4).
+     - Input 0x0000009e000000000000000000000000 -> Output 0x0000007e000000000000000000000000 (Bias: 6.7, p-val: 0.00e+00)
+     - Input 0x00000076000000000000000000000000 -> Output 0x000000b1000000000000000000000000 (Bias: 6.3, p-val: 0.00e+00)
+     - Input 0x000000ad000000000000000000000000 -> Output 0x0000004d000000000000000000000000 (Bias: 7.2, p-val: 0.00e+00)
+     - Input 0x0000006c000000000000000000000000 -> Output 0x0000005f000000000000000000000000 (Bias: 10.1, p-val: 0.00e+00)
+     - Input 0x00000082000000000000000000000000 -> Output 0x00000072000000000000000000000000 (Bias: 5.4, p-val: 0.00e+00)
+
+--- Running Config 3/36 ETA: 62.9 min ---
+  c = 0x1, byte_2_in->byte_2_out
+Starting sequential testing (max 10,000,000 trials, batch 500,000)...
+Detected 10 CPU cores. Using 10 processes for this run.
+✨ Sequential early discovery at 500,000 trials!
+   0x00000000000000000000000000190000 → 0x00000000000000000000000000ed0000
+   Bias: 5.22x, LLR: 66.1, p: 2.220e-16
+   0x00000000000000000000000000f70000 → 0x00000000000000000000000000c20000
+   Bias: 2.22x, LLR: 13.6, p: 4.841e-03
+   0x00000000000000000000000000180000 → 0x00000000000000000000000000900000
+   Bias: 2.48x, LLR: 17.3, p: 7.795e-04
+
+🔍 COMBINED EVIDENCE (strong_bias): 24892 signals
+   Config: byte_2_in->byte_2_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.50x
+
+🔍 COMBINED EVIDENCE (weak_significant): 23521 signals
+   Config: byte_2_in->byte_2_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.56x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 21765 signals
+   Config: byte_2_in->byte_2_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.64x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x1, byte_2_in->byte_2_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 27,300
+  Mean/Median/Std Dev count: 18.25 / 16.00 / 8.02
+  Max/Min count: 81 / 3
+  Skewness/Kurtosis: 1.669 / 3.610
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.949070
+  Max Chi-square: 702.26
+  Relative Entropy: 0.914
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=1157.170
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=923,195.34, P-value=0.000e+00
+  G-test (Log-likelihood): Statistic=952,850.90, P-value=0.000e+00
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 1 significant
+  Cluster 1: 27295 members, combined p=0.000e+00, avg bias=2.38x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.024e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  Found 10989 significant pairs. Top 10 by corrected p-value:
+  Input Diff (A)                    Output Diff (B)                   Obs Count  Bias     Corr P-val  
+  --------------------------------- --------------------------------- ---------- -------- ------------
+  0x00000000000000000000000000fc0000 0x00000000000000000000000000a80000 44         5.7     x 0.00e+00
+  0x00000000000000000000000000590000 0x00000000000000000000000000940000 41         5.4     x 0.00e+00
+  0x000000000000000000000000007b0000 0x00000000000000000000000000330000 42         5.5     x 0.00e+00
+  0x00000000000000000000000000200000 0x00000000000000000000000000ab0000 44         5.7     x 0.00e+00
+  0x000000000000000000000000001b0000 0x00000000000000000000000000580000 45         5.9     x 0.00e+00
+  0x000000000000000000000000001d0000 0x00000000000000000000000000410000 49         6.4     x 0.00e+00
+  0x00000000000000000000000000200000 0x00000000000000000000000000ce0000 48         6.3     x 0.00e+00
+  0x00000000000000000000000000840000 0x000000000000000000000000000d0000 42         5.5     x 0.00e+00
+  0x000000000000000000000000006f0000 0x00000000000000000000000000e70000 54         7.1     x 0.00e+00
+  0x00000000000000000000000000fc0000 0x000000000000000000000000005e0000 42         5.5     x 0.00e+00
+================================================================================
+
+*** NON-RANDOMNESS ANOMALY DETECTED (Global Distribution) ***
+    Config: byte_2_in->byte_2_out, c=0x1, Rounds: 1
+    The overall distribution of output differentials is NOT UNIFORM.
+    G-test p-value: 0.000e+00 is less than the threshold of 1.000e-03.
+    This provides strong statistical evidence of a non-random property for this configuration.
+
+⚠️  BIAS PERSISTENCE ANOMALY for 1 rounds
+    Config: byte_2_in->byte_2_out, c=0x1
+    Observed bias: 10.58x vs Expected: 0.794x
+    Ratio: 13.3x higher than expected decay
+
+🚨 CRITICAL ALERT: Statistically significant characteristic found for 1 rounds!
+   Config: byte_2_in->byte_2_out, c=0x1
+   Found 10989 significant pairs (threshold: 4).
+     - Input 0x00000000000000000000000000fc0000 -> Output 0x00000000000000000000000000a80000 (Bias: 5.7, p-val: 0.00e+00)
+     - Input 0x00000000000000000000000000590000 -> Output 0x00000000000000000000000000940000 (Bias: 5.4, p-val: 0.00e+00)
+     - Input 0x000000000000000000000000007b0000 -> Output 0x00000000000000000000000000330000 (Bias: 5.5, p-val: 0.00e+00)
+     - Input 0x00000000000000000000000000200000 -> Output 0x00000000000000000000000000ab0000 (Bias: 5.7, p-val: 0.00e+00)
+     - Input 0x000000000000000000000000001b0000 -> Output 0x00000000000000000000000000580000 (Bias: 5.9, p-val: 0.00e+00)
+
+--- Running Config 4/36 ETA: 59.4 min ---
+  c = 0x1, byte_2_in->byte_3_out
+Starting sequential testing (max 10,000,000 trials, batch 500,000)...
+Detected 10 CPU cores. Using 10 processes for this run.
+✨ Sequential early discovery at 500,000 trials!
+   0x00000000000000000000000000970000 → 0x00000000000000000000000069000000
+   Bias: 2.48x, LLR: 17.3, p: 7.795e-04
+   0x00000000000000000000000000670000 → 0x000000000000000000000000a1000000
+   Bias: 2.48x, LLR: 17.3, p: 7.795e-04
+   0x00000000000000000000000000050000 → 0x000000000000000000000000e5000000
+   Bias: 2.22x, LLR: 13.6, p: 4.841e-03
+
+🔍 COMBINED EVIDENCE (strong_bias): 24869 signals
+   Config: byte_2_in->byte_3_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.50x
+
+🔍 COMBINED EVIDENCE (weak_significant): 23465 signals
+   Config: byte_2_in->byte_3_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.56x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 21687 signals
+   Config: byte_2_in->byte_3_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.65x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x1, byte_2_in->byte_3_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 27,300
+  Mean/Median/Std Dev count: 18.24 / 16.00 / 7.99
+  Max/Min count: 78 / 3
+  Skewness/Kurtosis: 1.614 / 3.270
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.948618
+  Max Chi-square: 645.99
+  Relative Entropy: 0.914
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=1156.600
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=921,378.63, P-value=0.000e+00
+  G-test (Log-likelihood): Statistic=952,493.98, P-value=0.000e+00
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 1 significant
+  Cluster 1: 27295 members, combined p=0.000e+00, avg bias=2.38x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.024e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  Found 10923 significant pairs. Top 10 by corrected p-value:
+  Input Diff (A)                    Output Diff (B)                   Obs Count  Bias     Corr P-val  
+  --------------------------------- --------------------------------- ---------- -------- ------------
+  0x00000000000000000000000000400000 0x00000000000000000000000046000000 43         5.6     x 0.00e+00
+  0x00000000000000000000000000750000 0x000000000000000000000000b1000000 53         6.9     x 0.00e+00
+  0x000000000000000000000000001d0000 0x00000000000000000000000020000000 41         5.4     x 0.00e+00
+  0x00000000000000000000000000f40000 0x00000000000000000000000054000000 52         6.8     x 0.00e+00
+  0x00000000000000000000000000470000 0x000000000000000000000000db000000 48         6.3     x 0.00e+00
+  0x00000000000000000000000000ec0000 0x0000000000000000000000009c000000 41         5.4     x 0.00e+00
+  0x000000000000000000000000006a0000 0x000000000000000000000000f9000000 48         6.3     x 0.00e+00
+  0x00000000000000000000000000c70000 0x00000000000000000000000007000000 42         5.5     x 0.00e+00
+  0x000000000000000000000000007f0000 0x00000000000000000000000075000000 46         6.0     x 0.00e+00
+  0x00000000000000000000000000cf0000 0x00000000000000000000000092000000 48         6.3     x 0.00e+00
+================================================================================
+
+*** NON-RANDOMNESS ANOMALY DETECTED (Global Distribution) ***
+    Config: byte_2_in->byte_3_out, c=0x1, Rounds: 1
+    The overall distribution of output differentials is NOT UNIFORM.
+    G-test p-value: 0.000e+00 is less than the threshold of 1.000e-03.
+    This provides strong statistical evidence of a non-random property for this configuration.
+
+⚠️  BIAS PERSISTENCE ANOMALY for 1 rounds
+    Config: byte_2_in->byte_3_out, c=0x1
+    Observed bias: 10.18x vs Expected: 0.794x
+    Ratio: 12.8x higher than expected decay
+
+🚨 CRITICAL ALERT: Statistically significant characteristic found for 1 rounds!
+   Config: byte_2_in->byte_3_out, c=0x1
+   Found 10923 significant pairs (threshold: 4).
+     - Input 0x00000000000000000000000000400000 -> Output 0x00000000000000000000000046000000 (Bias: 5.6, p-val: 0.00e+00)
+     - Input 0x00000000000000000000000000750000 -> Output 0x000000000000000000000000b1000000 (Bias: 6.9, p-val: 0.00e+00)
+     - Input 0x000000000000000000000000001d0000 -> Output 0x00000000000000000000000020000000 (Bias: 5.4, p-val: 0.00e+00)
+     - Input 0x00000000000000000000000000f40000 -> Output 0x00000000000000000000000054000000 (Bias: 6.8, p-val: 0.00e+00)
+     - Input 0x00000000000000000000000000470000 -> Output 0x000000000000000000000000db000000 (Bias: 6.3, p-val: 0.00e+00)
+
+--- Running Config 5/36 ETA: 58.1 min ---
+  c = 0x1, byte_6_in->byte_6_out
+Starting sequential testing (max 10,000,000 trials, batch 500,000)...
+Detected 10 CPU cores. Using 10 processes for this run.
+✨ Sequential early discovery at 500,000 trials!
+   0x000000000000000000e4000000000000 → 0x0000000000000000001b000000000000
+   Bias: 2.48x, LLR: 17.3, p: 7.795e-04
+   0x000000000000000000ff000000000000 → 0x00000000000000000025000000000000
+   Bias: 2.74x, LLR: 21.2, p: 1.036e-04
+   0x000000000000000000b4000000000000 → 0x000000000000000000e9000000000000
+   Bias: 3.79x, LLR: 38.6, p: 6.250e-09
+
+🔍 COMBINED EVIDENCE (strong_bias): 24865 signals
+   Config: byte_6_in->byte_6_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.50x
+
+🔍 COMBINED EVIDENCE (weak_significant): 23491 signals
+   Config: byte_6_in->byte_6_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.56x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 21686 signals
+   Config: byte_6_in->byte_6_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.65x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x1, byte_6_in->byte_6_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 27,300
+  Mean/Median/Std Dev count: 18.25 / 16.00 / 8.01
+  Max/Min count: 82 / 2
+  Skewness/Kurtosis: 1.648 / 3.596
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.948998
+  Max Chi-square: 721.54
+  Relative Entropy: 0.914
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=1143.044
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=922,359.06, P-value=0.000e+00
+  G-test (Log-likelihood): Statistic=952,763.13, P-value=0.000e+00
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 1 significant
+  Cluster 1: 27294 members, combined p=0.000e+00, avg bias=2.38x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.021e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  Found 11038 significant pairs. Top 10 by corrected p-value:
+  Input Diff (A)                    Output Diff (B)                   Obs Count  Bias     Corr P-val  
+  --------------------------------- --------------------------------- ---------- -------- ------------
+  0x00000000000000000040000000000000 0x000000000000000000bb000000000000 55         7.2     x 0.00e+00
+  0x0000000000000000003a000000000000 0x00000000000000000067000000000000 45         5.9     x 0.00e+00
+  0x0000000000000000008d000000000000 0x0000000000000000009d000000000000 43         5.6     x 0.00e+00
+  0x00000000000000000090000000000000 0x000000000000000000d6000000000000 52         6.8     x 0.00e+00
+  0x00000000000000000055000000000000 0x00000000000000000079000000000000 55         7.2     x 0.00e+00
+  0x00000000000000000014000000000000 0x0000000000000000003a000000000000 52         6.8     x 0.00e+00
+  0x00000000000000000040000000000000 0x000000000000000000f4000000000000 43         5.6     x 0.00e+00
+  0x00000000000000000051000000000000 0x0000000000000000003e000000000000 46         6.0     x 0.00e+00
+  0x00000000000000000003000000000000 0x000000000000000000c5000000000000 45         5.9     x 0.00e+00
+  0x0000000000000000009c000000000000 0x00000000000000000080000000000000 41         5.4     x 0.00e+00
+================================================================================
+
+*** NON-RANDOMNESS ANOMALY DETECTED (Global Distribution) ***
+    Config: byte_6_in->byte_6_out, c=0x1, Rounds: 1
+    The overall distribution of output differentials is NOT UNIFORM.
+    G-test p-value: 0.000e+00 is less than the threshold of 1.000e-03.
+    This provides strong statistical evidence of a non-random property for this configuration.
+
+⚠️  BIAS PERSISTENCE ANOMALY for 1 rounds
+    Config: byte_6_in->byte_6_out, c=0x1
+    Observed bias: 10.71x vs Expected: 0.794x
+    Ratio: 13.5x higher than expected decay
+
+🚨 CRITICAL ALERT: Statistically significant characteristic found for 1 rounds!
+   Config: byte_6_in->byte_6_out, c=0x1
+   Found 11038 significant pairs (threshold: 4).
+     - Input 0x00000000000000000040000000000000 -> Output 0x000000000000000000bb000000000000 (Bias: 7.2, p-val: 0.00e+00)
+     - Input 0x0000000000000000003a000000000000 -> Output 0x00000000000000000067000000000000 (Bias: 5.9, p-val: 0.00e+00)
+     - Input 0x0000000000000000008d000000000000 -> Output 0x0000000000000000009d000000000000 (Bias: 5.6, p-val: 0.00e+00)
+     - Input 0x00000000000000000090000000000000 -> Output 0x000000000000000000d6000000000000 (Bias: 6.8, p-val: 0.00e+00)
+     - Input 0x00000000000000000055000000000000 -> Output 0x00000000000000000079000000000000 (Bias: 7.2, p-val: 0.00e+00)
+
+--- Running Config 6/36 ETA: 55.9 min ---
+  c = 0x1, byte_8_in->byte_8_out
+Starting sequential testing (max 10,000,000 trials, batch 500,000)...
+Detected 10 CPU cores. Using 10 processes for this run.
+✨ Sequential early discovery at 500,000 trials!
+   0x00000000000000820000000000000000 → 0x00000000000000b20000000000000000
+   Bias: 4.57x, LLR: 53.2, p: 1.023e-12
+   0x00000000000000060000000000000000 → 0x000000000000002a0000000000000000
+   Bias: 2.09x, LLR: 11.8, p: 1.117e-02
+   0x00000000000000970000000000000000 → 0x00000000000000b70000000000000000
+   Bias: 2.48x, LLR: 17.3, p: 7.795e-04
+
+🔍 COMBINED EVIDENCE (strong_bias): 24873 signals
+   Config: byte_8_in->byte_8_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.50x
+
+🔍 COMBINED EVIDENCE (weak_significant): 23480 signals
+   Config: byte_8_in->byte_8_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.56x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 21734 signals
+   Config: byte_8_in->byte_8_out, c=0x1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 2.64x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x1, byte_8_in->byte_8_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 27,300
+  Mean/Median/Std Dev count: 18.25 / 16.00 / 7.99
+  Max/Min count: 74 / 3
+  Skewness/Kurtosis: 1.632 / 3.393
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.948620
+  Max Chi-square: 574.61
+  Relative Entropy: 0.914
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=1155.165
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=921,293.08, P-value=0.000e+00
+  G-test (Log-likelihood): Statistic=952,406.93, P-value=0.000e+00
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 1 significant
+  Cluster 1: 27295 members, combined p=0.000e+00, avg bias=2.38x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.021e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  Found 10941 significant pairs. Top 10 by corrected p-value:
+  Input Diff (A)                    Output Diff (B)                   Obs Count  Bias     Corr P-val  
+  --------------------------------- --------------------------------- ---------- -------- ------------
+  0x00000000000000170000000000000000 0x00000000000000900000000000000000 42         5.5     x 0.00e+00
+  0x00000000000000240000000000000000 0x00000000000000bc0000000000000000 44         5.7     x 0.00e+00
+  0x00000000000000880000000000000000 0x00000000000000f00000000000000000 44         5.7     x 0.00e+00
+  0x000000000000000e0000000000000000 0x000000000000007e0000000000000000 56         7.3     x 0.00e+00
+  0x00000000000000c60000000000000000 0x00000000000000360000000000000000 43         5.6     x 0.00e+00
+  0x00000000000000cc0000000000000000 0x00000000000000370000000000000000 41         5.4     x 0.00e+00
+  0x00000000000000b90000000000000000 0x00000000000000310000000000000000 43         5.6     x 0.00e+00
+  0x00000000000000270000000000000000 0x00000000000000db0000000000000000 43         5.6     x 0.00e+00
+  0x000000000000000d0000000000000000 0x000000000000004f0000000000000000 54         7.1     x 0.00e+00
+  0x00000000000000aa0000000000000000 0x000000000000003f0000000000000000 47         6.1     x 0.00e+00
+================================================================================
+
+*** NON-RANDOMNESS ANOMALY DETECTED (Global Distribution) ***
+    Config: byte_8_in->byte_8_out, c=0x1, Rounds: 1
+    The overall distribution of output differentials is NOT UNIFORM.
+    G-test p-value: 0.000e+00 is less than the threshold of 1.000e-03.
+    This provides strong statistical evidence of a non-random property for this configuration.
+
+⚠️  BIAS PERSISTENCE ANOMALY for 1 rounds
+    Config: byte_8_in->byte_8_out, c=0x1
+    Observed bias: 9.66x vs Expected: 0.794x
+    Ratio: 12.2x higher than expected decay
+
+🚨 CRITICAL ALERT: Statistically significant characteristic found for 1 rounds!
+   Config: byte_8_in->byte_8_out, c=0x1
+   Found 10941 significant pairs (threshold: 4).
+     - Input 0x00000000000000170000000000000000 -> Output 0x00000000000000900000000000000000 (Bias: 5.5, p-val: 0.00e+00)
+     - Input 0x00000000000000240000000000000000 -> Output 0x00000000000000bc0000000000000000 (Bias: 5.7, p-val: 0.00e+00)
+     - Input 0x00000000000000880000000000000000 -> Output 0x00000000000000f00000000000000000 (Bias: 5.7, p-val: 0.00e+00)
+     - Input 0x000000000000000e0000000000000000 -> Output 0x000000000000007e0000000000000000 (Bias: 7.3, p-val: 0.00e+00)
+     - Input 0x00000000000000c60000000000000000 -> Output 0x00000000000000360000000000000000 (Bias: 5.6, p-val: 0.00e+00)
+
+--- Running Config 7/36 ETA: 53.7 min ---
+  c = 0x2, byte_0_in->byte_1_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 26 signals
+   Config: byte_0_in->byte_1_out, c=0x2
+   Fisher's combined p-value: 4.067e-55
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2795 signals
+   Config: byte_0_in->byte_1_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10946 signals
+   Config: byte_0_in->byte_1_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 344 signals
+   Config: byte_0_in->byte_1_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x2, byte_0_in->byte_1_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.70
+  Max/Min count: 114 / 42
+  Skewness/Kurtosis: 0.121 / 0.012
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006522
+  Max Chi-square: 18.64
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=45.909
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,835.27, P-value=8.905e-01
+  G-test (Log-likelihood): Statistic=64,961.56, P-value=8.101e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 26 signals, combined p=4.067e-55
+   moderate_bias: 2795 signals, combined p=0.000e+00
+   weak_significant: 10946 signals, combined p=0.000e+00
+   combined_moderate: 344 signals, combined p=0.000e+00
+
+--- Running Config 8/36 ETA: 56.5 min ---
+  c = 0x2, byte_12_in->byte_12_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 30 signals
+   Config: byte_12_in->byte_12_out, c=0x2
+   Fisher's combined p-value: 9.311e-63
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2797 signals
+   Config: byte_12_in->byte_12_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10922 signals
+   Config: byte_12_in->byte_12_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 317 signals
+   Config: byte_12_in->byte_12_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x2, byte_12_in->byte_12_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.70
+  Max/Min count: 117 / 43
+  Skewness/Kurtosis: 0.106 / -0.003
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006517
+  Max Chi-square: 21.71
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=43.592
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,758.80, P-value=9.253e-01
+  G-test (Log-likelihood): Statistic=64,920.13, P-value=8.397e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 30 signals, combined p=9.311e-63
+   moderate_bias: 2797 signals, combined p=0.000e+00
+   weak_significant: 10922 signals, combined p=0.000e+00
+   combined_moderate: 317 signals, combined p=0.000e+00
+
+--- Running Config 9/36 ETA: 57.4 min ---
+  c = 0x2, byte_14_in->byte_15_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 35 signals
+   Config: byte_14_in->byte_15_out, c=0x2
+   Fisher's combined p-value: 7.459e-77
+   Average bias: 1.44x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2808 signals
+   Config: byte_14_in->byte_15_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11096 signals
+   Config: byte_14_in->byte_15_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 376 signals
+   Config: byte_14_in->byte_15_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x2, byte_14_in->byte_15_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.73
+  Max/Min count: 115 / 42
+  Skewness/Kurtosis: 0.135 / 0.022
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006557
+  Max Chi-square: 19.64
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=45.912
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,224.44, P-value=5.593e-01
+  G-test (Log-likelihood): Statistic=65,317.30, P-value=4.571e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 35 signals, combined p=7.459e-77
+   moderate_bias: 2808 signals, combined p=0.000e+00
+   weak_significant: 11096 signals, combined p=0.000e+00
+   combined_moderate: 376 signals, combined p=0.000e+00
+
+--- Running Config 10/36 ETA: 60.5 min ---
+  c = 0x2, byte_2_in->byte_2_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 35 signals
+   Config: byte_2_in->byte_2_out, c=0x2
+   Fisher's combined p-value: 3.197e-71
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2751 signals
+   Config: byte_2_in->byte_2_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10791 signals
+   Config: byte_2_in->byte_2_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 319 signals
+   Config: byte_2_in->byte_2_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x2, byte_2_in->byte_2_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.66
+  Max/Min count: 113 / 41
+  Skewness/Kurtosis: 0.108 / 0.032
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006461
+  Max Chi-square: 17.66
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=44.163
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,196.75, P-value=9.987e-01
+  G-test (Log-likelihood): Statistic=64,353.79, P-value=9.949e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 35 signals, combined p=3.197e-71
+   moderate_bias: 2751 signals, combined p=0.000e+00
+   weak_significant: 10791 signals, combined p=0.000e+00
+   combined_moderate: 319 signals, combined p=0.000e+00
+
+--- Running Config 11/36 ETA: 61.1 min ---
+  c = 0x2, byte_8_in->byte_8_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 31 signals
+   Config: byte_8_in->byte_8_out, c=0x2
+   Fisher's combined p-value: 5.302e-66
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2873 signals
+   Config: byte_8_in->byte_8_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11040 signals
+   Config: byte_8_in->byte_8_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 312 signals
+   Config: byte_8_in->byte_8_out, c=0x2
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x2, byte_8_in->byte_8_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.73
+  Max/Min count: 118 / 42
+  Skewness/Kurtosis: 0.106 / -0.005
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006564
+  Max Chi-square: 22.80
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=44.119
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,217.01, P-value=5.674e-01
+  G-test (Log-likelihood): Statistic=65,380.00, P-value=3.893e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 31 signals, combined p=5.302e-66
+   moderate_bias: 2873 signals, combined p=0.000e+00
+   weak_significant: 11040 signals, combined p=0.000e+00
+   combined_moderate: 312 signals, combined p=0.000e+00
+
+--- Running Config 12/36 ETA: 59.7 min ---
+  c = 0x3, byte_0_in->byte_0_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 27 signals
+   Config: byte_0_in->byte_0_out, c=0x3
+   Fisher's combined p-value: 1.739e-55
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2762 signals
+   Config: byte_0_in->byte_0_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11055 signals
+   Config: byte_0_in->byte_0_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 342 signals
+   Config: byte_0_in->byte_0_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x3, byte_0_in->byte_0_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.71
+  Max/Min count: 114 / 41
+  Skewness/Kurtosis: 0.103 / -0.018
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006532
+  Max Chi-square: 18.63
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=41.341
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,900.52, P-value=8.526e-01
+  G-test (Log-likelihood): Statistic=65,066.35, P-value=7.215e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 27 signals, combined p=1.739e-55
+   moderate_bias: 2762 signals, combined p=0.000e+00
+   weak_significant: 11055 signals, combined p=0.000e+00
+   combined_moderate: 342 signals, combined p=0.000e+00
+
+--- Running Config 13/36 ETA: 59.6 min ---
+  c = 0x3, byte_10_in->byte_10_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 39 signals
+   Config: byte_10_in->byte_10_out, c=0x3
+   Fisher's combined p-value: 1.813e-85
+   Average bias: 1.44x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2846 signals
+   Config: byte_10_in->byte_10_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11052 signals
+   Config: byte_10_in->byte_10_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 378 signals
+   Config: byte_10_in->byte_10_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x3, byte_10_in->byte_10_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.78
+  Max/Min count: 121 / 41
+  Skewness/Kurtosis: 0.115 / 0.071
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006630
+  Max Chi-square: 26.19
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=42.986
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,885.51, P-value=4.695e-02
+  G-test (Log-likelihood): Statistic=66,041.85, P-value=1.765e-02
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 39 signals, combined p=1.813e-85
+   moderate_bias: 2846 signals, combined p=0.000e+00
+   weak_significant: 11052 signals, combined p=0.000e+00
+   combined_moderate: 378 signals, combined p=0.000e+00
+
+--- Running Config 14/36 ETA: 57.1 min ---
+  c = 0x3, byte_12_in->byte_12_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 32 signals
+   Config: byte_12_in->byte_12_out, c=0x3
+   Fisher's combined p-value: 3.929e-67
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2832 signals
+   Config: byte_12_in->byte_12_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11041 signals
+   Config: byte_12_in->byte_12_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 300 signals
+   Config: byte_12_in->byte_12_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x3, byte_12_in->byte_12_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.71
+  Max/Min count: 121 / 37
+  Skewness/Kurtosis: 0.113 / 0.003
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006539
+  Max Chi-square: 26.20
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=45.108
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,985.05, P-value=7.919e-01
+  G-test (Log-likelihood): Statistic=65,131.58, P-value=6.578e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 32 signals, combined p=3.929e-67
+   moderate_bias: 2832 signals, combined p=0.000e+00
+   weak_significant: 11041 signals, combined p=0.000e+00
+   combined_moderate: 300 signals, combined p=0.000e+00
+
+--- Running Config 15/36 ETA: 56.3 min ---
+  c = 0x3, byte_4_in->byte_4_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 37 signals
+   Config: byte_4_in->byte_4_out, c=0x3
+   Fisher's combined p-value: 2.089e-76
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2874 signals
+   Config: byte_4_in->byte_4_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10951 signals
+   Config: byte_4_in->byte_4_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.01x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 337 signals
+   Config: byte_4_in->byte_4_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x3, byte_4_in->byte_4_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.72
+  Max/Min count: 114 / 42
+  Skewness/Kurtosis: 0.122 / 0.018
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006537
+  Max Chi-square: 18.63
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=45.802
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,996.60, P-value=7.826e-01
+  G-test (Log-likelihood): Statistic=65,120.46, P-value=6.690e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 37 signals, combined p=2.089e-76
+   moderate_bias: 2874 signals, combined p=0.000e+00
+   weak_significant: 10951 signals, combined p=0.000e+00
+   combined_moderate: 337 signals, combined p=0.000e+00
+
+--- Running Config 16/36 ETA: 53.8 min ---
+  c = 0x3, byte_6_in->byte_6_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 31 signals
+   Config: byte_6_in->byte_6_out, c=0x3
+   Fisher's combined p-value: 1.087e-65
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2840 signals
+   Config: byte_6_in->byte_6_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11101 signals
+   Config: byte_6_in->byte_6_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 329 signals
+   Config: byte_6_in->byte_6_out, c=0x3
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x3, byte_6_in->byte_6_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.74
+  Max/Min count: 116 / 45
+  Skewness/Kurtosis: 0.117 / -0.016
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006575
+  Max Chi-square: 20.67
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=43.690
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,362.62, P-value=4.078e-01
+  G-test (Log-likelihood): Statistic=65,496.42, P-value=2.733e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 31 signals, combined p=1.087e-65
+   moderate_bias: 2840 signals, combined p=0.000e+00
+   weak_significant: 11101 signals, combined p=0.000e+00
+   combined_moderate: 329 signals, combined p=0.000e+00
+
+--- Running Config 17/36 ETA: 52.4 min ---
+  c = 0x4, byte_2_in->byte_2_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 34 signals
+   Config: byte_2_in->byte_2_out, c=0x4
+   Fisher's combined p-value: 3.322e-72
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2896 signals
+   Config: byte_2_in->byte_2_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11053 signals
+   Config: byte_2_in->byte_2_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 323 signals
+   Config: byte_2_in->byte_2_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x4, byte_2_in->byte_2_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.74
+  Max/Min count: 116 / 42
+  Skewness/Kurtosis: 0.108 / 0.013
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006578
+  Max Chi-square: 20.66
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=42.647
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,366.45, P-value=4.037e-01
+  G-test (Log-likelihood): Statistic=65,528.86, P-value=2.443e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 34 signals, combined p=3.322e-72
+   moderate_bias: 2896 signals, combined p=0.000e+00
+   weak_significant: 11053 signals, combined p=0.000e+00
+   combined_moderate: 323 signals, combined p=0.000e+00
+
+--- Running Config 18/36 ETA: 50.2 min ---
+  c = 0x4, byte_4_in->byte_4_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 39 signals
+   Config: byte_4_in->byte_4_out, c=0x4
+   Fisher's combined p-value: 7.185e-90
+   Average bias: 1.45x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2767 signals
+   Config: byte_4_in->byte_4_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11018 signals
+   Config: byte_4_in->byte_4_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 353 signals
+   Config: byte_4_in->byte_4_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x4, byte_4_in->byte_4_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.72
+  Max/Min count: 119 / 38
+  Skewness/Kurtosis: 0.129 / 0.024
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006537
+  Max Chi-square: 23.90
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=44.694
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,012.90, P-value=7.690e-01
+  G-test (Log-likelihood): Statistic=65,119.15, P-value=6.704e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 39 signals, combined p=7.185e-90
+   moderate_bias: 2767 signals, combined p=0.000e+00
+   weak_significant: 11018 signals, combined p=0.000e+00
+   combined_moderate: 353 signals, combined p=0.000e+00
+
+--- Running Config 19/36 ETA: 47.7 min ---
+  c = 0x4, byte_8_in->byte_8_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 31 signals
+   Config: byte_8_in->byte_8_out, c=0x4
+   Fisher's combined p-value: 1.539e-63
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2901 signals
+   Config: byte_8_in->byte_8_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11202 signals
+   Config: byte_8_in->byte_8_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.01x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 348 signals
+   Config: byte_8_in->byte_8_out, c=0x4
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x4, byte_8_in->byte_8_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.74
+  Max/Min count: 115 / 42
+  Skewness/Kurtosis: 0.116 / 0.009
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006575
+  Max Chi-square: 19.64
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=45.812
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,351.45, P-value=4.198e-01
+  G-test (Log-likelihood): Statistic=65,492.73, P-value=2.767e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 31 signals, combined p=1.539e-63
+   moderate_bias: 2901 signals, combined p=0.000e+00
+   weak_significant: 11202 signals, combined p=0.000e+00
+   combined_moderate: 348 signals, combined p=0.000e+00
+
+--- Running Config 20/36 ETA: 45.6 min ---
+  c = 0x91, byte_0_in->byte_0_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 34 signals
+   Config: byte_0_in->byte_0_out, c=0x91
+   Fisher's combined p-value: 1.047e-69
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2832 signals
+   Config: byte_0_in->byte_0_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11055 signals
+   Config: byte_0_in->byte_0_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 322 signals
+   Config: byte_0_in->byte_0_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x91, byte_0_in->byte_0_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.73
+  Max/Min count: 117 / 42
+  Skewness/Kurtosis: 0.103 / 0.009
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006558
+  Max Chi-square: 21.72
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=42.286
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,149.20, P-value=6.397e-01
+  G-test (Log-likelihood): Statistic=65,323.09, P-value=4.507e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 34 signals, combined p=1.047e-69
+   moderate_bias: 2832 signals, combined p=0.000e+00
+   weak_significant: 11055 signals, combined p=0.000e+00
+   combined_moderate: 322 signals, combined p=0.000e+00
+
+--- Running Config 21/36 ETA: 42.9 min ---
+  c = 0x91, byte_0_in->byte_1_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 41 signals
+   Config: byte_0_in->byte_1_out, c=0x91
+   Fisher's combined p-value: 3.888e-88
+   Average bias: 1.44x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2913 signals
+   Config: byte_0_in->byte_1_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11042 signals
+   Config: byte_0_in->byte_1_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.01x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 372 signals
+   Config: byte_0_in->byte_1_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x91, byte_0_in->byte_1_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.76
+  Max/Min count: 119 / 43
+  Skewness/Kurtosis: 0.138 / 0.052
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006599
+  Max Chi-square: 23.91
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=47.586
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,636.33, P-value=1.613e-01
+  G-test (Log-likelihood): Statistic=65,728.26, P-value=1.071e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 41 signals, combined p=3.888e-88
+   moderate_bias: 2913 signals, combined p=0.000e+00
+   weak_significant: 11042 signals, combined p=0.000e+00
+   combined_moderate: 372 signals, combined p=0.000e+00
+
+--- Running Config 22/36 ETA: 41.1 min ---
+  c = 0x91, byte_12_in->byte_12_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 26 signals
+   Config: byte_12_in->byte_12_out, c=0x91
+   Fisher's combined p-value: 1.136e-53
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2930 signals
+   Config: byte_12_in->byte_12_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11117 signals
+   Config: byte_12_in->byte_12_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.01x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 356 signals
+   Config: byte_12_in->byte_12_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x91, byte_12_in->byte_12_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.75
+  Max/Min count: 113 / 44
+  Skewness/Kurtosis: 0.124 / -0.011
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006588
+  Max Chi-square: 17.66
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=46.726
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,511.16, P-value=2.599e-01
+  G-test (Log-likelihood): Statistic=65,628.40, P-value=1.667e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 26 signals, combined p=1.136e-53
+   moderate_bias: 2930 signals, combined p=0.000e+00
+   weak_significant: 11117 signals, combined p=0.000e+00
+   combined_moderate: 356 signals, combined p=0.000e+00
+
+--- Running Config 23/36 ETA: 38.2 min ---
+  c = 0x91, byte_2_in->byte_2_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 41 signals
+   Config: byte_2_in->byte_2_out, c=0x91
+   Fisher's combined p-value: 1.663e-82
+   Average bias: 1.42x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2844 signals
+   Config: byte_2_in->byte_2_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10956 signals
+   Config: byte_2_in->byte_2_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.01x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 338 signals
+   Config: byte_2_in->byte_2_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x91, byte_2_in->byte_2_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.71
+  Max/Min count: 113 / 43
+  Skewness/Kurtosis: 0.134 / 0.019
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006533
+  Max Chi-square: 17.66
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=49.846
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,983.00, P-value=7.935e-01
+  G-test (Log-likelihood): Statistic=65,077.00, P-value=7.115e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 41 signals, combined p=1.663e-82
+   moderate_bias: 2844 signals, combined p=0.000e+00
+   weak_significant: 10956 signals, combined p=0.000e+00
+   combined_moderate: 338 signals, combined p=0.000e+00
+
+--- Running Config 24/36 ETA: 35.8 min ---
+  c = 0x91, byte_4_in->byte_4_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 35 signals
+   Config: byte_4_in->byte_4_out, c=0x91
+   Fisher's combined p-value: 8.045e-71
+   Average bias: 1.42x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2909 signals
+   Config: byte_4_in->byte_4_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11159 signals
+   Config: byte_4_in->byte_4_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 366 signals
+   Config: byte_4_in->byte_4_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x91, byte_4_in->byte_4_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.78
+  Max/Min count: 114 / 43
+  Skewness/Kurtosis: 0.109 / 0.016
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006641
+  Max Chi-square: 18.64
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=41.916
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,988.50, P-value=2.509e-02
+  G-test (Log-likelihood): Statistic=66,152.53, P-value=8.005e-03
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 35 signals, combined p=8.045e-71
+   moderate_bias: 2909 signals, combined p=0.000e+00
+   weak_significant: 11159 signals, combined p=0.000e+00
+   combined_moderate: 366 signals, combined p=0.000e+00
+
+--- Running Config 25/36 ETA: 33.3 min ---
+  c = 0x91, byte_8_in->byte_8_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 38 signals
+   Config: byte_8_in->byte_8_out, c=0x91
+   Fisher's combined p-value: 5.440e-81
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2897 signals
+   Config: byte_8_in->byte_8_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11114 signals
+   Config: byte_8_in->byte_8_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 338 signals
+   Config: byte_8_in->byte_8_out, c=0x91
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0x91, byte_8_in->byte_8_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.74
+  Max/Min count: 126 / 43
+  Skewness/Kurtosis: 0.123 / 0.022
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006569
+  Max Chi-square: 32.38
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=45.196
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,306.93, P-value=4.685e-01
+  G-test (Log-likelihood): Statistic=65,429.82, P-value=3.376e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 38 signals, combined p=5.440e-81
+   moderate_bias: 2897 signals, combined p=0.000e+00
+   weak_significant: 11114 signals, combined p=0.000e+00
+   combined_moderate: 338 signals, combined p=0.000e+00
+
+--- Running Config 26/36 ETA: 30.7 min ---
+  c = 0xbe, byte_0_in->byte_0_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 42 signals
+   Config: byte_0_in->byte_0_out, c=0xbe
+   Fisher's combined p-value: 3.321e-91
+   Average bias: 1.44x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2782 signals
+   Config: byte_0_in->byte_0_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11273 signals
+   Config: byte_0_in->byte_0_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 369 signals
+   Config: byte_0_in->byte_0_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xbe, byte_0_in->byte_0_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.76
+  Max/Min count: 116 / 41
+  Skewness/Kurtosis: 0.115 / 0.001
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006612
+  Max Chi-square: 20.67
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=42.251
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,713.23, P-value=1.149e-01
+  G-test (Log-likelihood): Statistic=65,857.91, P-value=5.488e-02
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 42 signals, combined p=3.321e-91
+   moderate_bias: 2782 signals, combined p=0.000e+00
+   weak_significant: 11273 signals, combined p=0.000e+00
+   combined_moderate: 369 signals, combined p=0.000e+00
+
+--- Running Config 27/36 ETA: 28.2 min ---
+  c = 0xbe, byte_14_in->byte_14_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 40 signals
+   Config: byte_14_in->byte_14_out, c=0xbe
+   Fisher's combined p-value: 9.542e-87
+   Average bias: 1.44x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2832 signals
+   Config: byte_14_in->byte_14_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10957 signals
+   Config: byte_14_in->byte_14_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.01x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 356 signals
+   Config: byte_14_in->byte_14_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xbe, byte_14_in->byte_14_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.73
+  Max/Min count: 119 / 42
+  Skewness/Kurtosis: 0.128 / 0.039
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006563
+  Max Chi-square: 23.90
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=46.402
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,262.29, P-value=5.177e-01
+  G-test (Log-likelihood): Statistic=65,376.37, P-value=3.931e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 40 signals, combined p=9.542e-87
+   moderate_bias: 2832 signals, combined p=0.000e+00
+   weak_significant: 10957 signals, combined p=0.000e+00
+   combined_moderate: 356 signals, combined p=0.000e+00
+
+--- Running Config 28/36 ETA: 25.4 min ---
+  c = 0xbe, byte_14_in->byte_15_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 51 signals
+   Config: byte_14_in->byte_15_out, c=0xbe
+   Fisher's combined p-value: 8.716e-109
+   Average bias: 1.44x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2864 signals
+   Config: byte_14_in->byte_15_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11126 signals
+   Config: byte_14_in->byte_15_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 352 signals
+   Config: byte_14_in->byte_15_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xbe, byte_14_in->byte_15_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.74
+  Max/Min count: 114 / 41
+  Skewness/Kurtosis: 0.123 / 0.042
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006576
+  Max Chi-square: 18.63
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=44.003
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,381.07, P-value=3.881e-01
+  G-test (Log-likelihood): Statistic=65,507.94, P-value=2.628e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 51 signals, combined p=8.716e-109
+   moderate_bias: 2864 signals, combined p=0.000e+00
+   weak_significant: 11126 signals, combined p=0.000e+00
+   combined_moderate: 352 signals, combined p=0.000e+00
+
+--- Running Config 29/36 ETA: 23.0 min ---
+  c = 0xbe, byte_2_in->byte_2_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 29 signals
+   Config: byte_2_in->byte_2_out, c=0xbe
+   Fisher's combined p-value: 2.149e-62
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2873 signals
+   Config: byte_2_in->byte_2_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11137 signals
+   Config: byte_2_in->byte_2_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 385 signals
+   Config: byte_2_in->byte_2_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xbe, byte_2_in->byte_2_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.76
+  Max/Min count: 116 / 43
+  Skewness/Kurtosis: 0.115 / 0.018
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006602
+  Max Chi-square: 20.67
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=42.738
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,613.42, P-value=1.773e-01
+  G-test (Log-likelihood): Statistic=65,760.54, P-value=9.155e-02
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 29 signals, combined p=2.149e-62
+   moderate_bias: 2873 signals, combined p=0.000e+00
+   weak_significant: 11137 signals, combined p=0.000e+00
+   combined_moderate: 385 signals, combined p=0.000e+00
+
+--- Running Config 30/36 ETA: 20.1 min ---
+  c = 0xbe, byte_6_in->byte_6_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 34 signals
+   Config: byte_6_in->byte_6_out, c=0xbe
+   Fisher's combined p-value: 6.593e-70
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2738 signals
+   Config: byte_6_in->byte_6_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10846 signals
+   Config: byte_6_in->byte_6_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 336 signals
+   Config: byte_6_in->byte_6_out, c=0xbe
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xbe, byte_6_in->byte_6_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.68
+  Max/Min count: 112 / 40
+  Skewness/Kurtosis: 0.109 / 0.011
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006494
+  Max Chi-square: 17.27
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=42.467
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,536.59, P-value=9.803e-01
+  G-test (Log-likelihood): Statistic=64,688.87, P-value=9.491e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 34 signals, combined p=6.593e-70
+   moderate_bias: 2738 signals, combined p=0.000e+00
+   weak_significant: 10846 signals, combined p=0.000e+00
+   combined_moderate: 336 signals, combined p=0.000e+00
+
+--- Running Config 31/36 ETA: 17.5 min ---
+  c = 0xe1, byte_12_in->byte_12_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 29 signals
+   Config: byte_12_in->byte_12_out, c=0xe1
+   Fisher's combined p-value: 1.557e-61
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2801 signals
+   Config: byte_12_in->byte_12_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11068 signals
+   Config: byte_12_in->byte_12_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 333 signals
+   Config: byte_12_in->byte_12_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xe1, byte_12_in->byte_12_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.71
+  Max/Min count: 115 / 42
+  Skewness/Kurtosis: 0.105 / -0.005
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006540
+  Max Chi-square: 19.64
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=42.369
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,981.25, P-value=7.949e-01
+  G-test (Log-likelihood): Statistic=65,144.87, P-value=6.442e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 29 signals, combined p=1.557e-61
+   moderate_bias: 2801 signals, combined p=0.000e+00
+   weak_significant: 11068 signals, combined p=0.000e+00
+   combined_moderate: 333 signals, combined p=0.000e+00
+
+--- Running Config 32/36 ETA: 14.6 min ---
+  c = 0xe1, byte_2_in->byte_2_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 35 signals
+   Config: byte_2_in->byte_2_out, c=0xe1
+   Fisher's combined p-value: 5.743e-74
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2771 signals
+   Config: byte_2_in->byte_2_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11029 signals
+   Config: byte_2_in->byte_2_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 349 signals
+   Config: byte_2_in->byte_2_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xe1, byte_2_in->byte_2_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.72
+  Max/Min count: 116 / 40
+  Skewness/Kurtosis: 0.118 / 0.032
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006543
+  Max Chi-square: 20.66
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=44.283
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,041.07, P-value=7.446e-01
+  G-test (Log-likelihood): Statistic=65,178.43, P-value=6.090e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 35 signals, combined p=5.743e-74
+   moderate_bias: 2771 signals, combined p=0.000e+00
+   weak_significant: 11029 signals, combined p=0.000e+00
+   combined_moderate: 349 signals, combined p=0.000e+00
+
+--- Running Config 33/36 ETA: 11.8 min ---
+  c = 0xe1, byte_4_in->byte_4_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 27 signals
+   Config: byte_4_in->byte_4_out, c=0xe1
+   Fisher's combined p-value: 1.711e-60
+   Average bias: 1.44x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2834 signals
+   Config: byte_4_in->byte_4_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11076 signals
+   Config: byte_4_in->byte_4_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 355 signals
+   Config: byte_4_in->byte_4_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xe1, byte_4_in->byte_4_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.74
+  Max/Min count: 117 / 43
+  Skewness/Kurtosis: 0.115 / 0.011
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006577
+  Max Chi-square: 21.72
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=43.186
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,370.26, P-value=3.996e-01
+  G-test (Log-likelihood): Statistic=65,514.66, P-value=2.568e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 27 signals, combined p=1.711e-60
+   moderate_bias: 2834 signals, combined p=0.000e+00
+   weak_significant: 11076 signals, combined p=0.000e+00
+   combined_moderate: 355 signals, combined p=0.000e+00
+
+--- Running Config 34/36 ETA: 8.9 min ---
+  c = 0xe1, byte_4_in->byte_5_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 39 signals
+   Config: byte_4_in->byte_5_out, c=0xe1
+   Fisher's combined p-value: 1.245e-81
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2763 signals
+   Config: byte_4_in->byte_5_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 11015 signals
+   Config: byte_4_in->byte_5_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 342 signals
+   Config: byte_4_in->byte_5_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.35x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xe1, byte_4_in->byte_5_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.71
+  Max/Min count: 114 / 39
+  Skewness/Kurtosis: 0.110 / 0.033
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006540
+  Max Chi-square: 18.64
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=42.369
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,988.96, P-value=7.887e-01
+  G-test (Log-likelihood): Statistic=65,145.09, P-value=6.439e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 39 signals, combined p=1.245e-81
+   moderate_bias: 2763 signals, combined p=0.000e+00
+   weak_significant: 11015 signals, combined p=0.000e+00
+   combined_moderate: 342 signals, combined p=0.000e+00
+
+--- Running Config 35/36 ETA: 6.1 min ---
+  c = 0xe1, byte_6_in->byte_6_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 34 signals
+   Config: byte_6_in->byte_6_out, c=0xe1
+   Fisher's combined p-value: 3.405e-71
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2947 signals
+   Config: byte_6_in->byte_6_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10995 signals
+   Config: byte_6_in->byte_6_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.01x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 351 signals
+   Config: byte_6_in->byte_6_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xe1, byte_6_in->byte_6_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.29 / 76.00 / 8.73
+  Max/Min count: 117 / 42
+  Skewness/Kurtosis: 0.127 / 0.026
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006559
+  Max Chi-square: 21.72
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=47.150
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=65,214.54, P-value=5.701e-01
+  G-test (Log-likelihood): Statistic=65,328.76, P-value=4.445e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 34 signals, combined p=3.405e-71
+   moderate_bias: 2947 signals, combined p=0.000e+00
+   weak_significant: 10995 signals, combined p=0.000e+00
+   combined_moderate: 351 signals, combined p=0.000e+00
+
+--- Running Config 36/36 ETA: 3.1 min ---
+  c = 0xe1, byte_8_in->byte_8_out
+Detected 10 CPU cores. Using 10 processes for this run.
+
+🔍 COMBINED EVIDENCE (strong_bias): 33 signals
+   Config: byte_8_in->byte_8_out, c=0xe1
+   Fisher's combined p-value: 1.921e-67
+   Average bias: 1.43x
+
+🔍 COMBINED EVIDENCE (moderate_bias): 2841 signals
+   Config: byte_8_in->byte_8_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.25x
+
+🔍 COMBINED EVIDENCE (weak_significant): 10954 signals
+   Config: byte_8_in->byte_8_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.00x
+
+🔍 COMBINED EVIDENCE (combined_moderate): 365 signals
+   Config: byte_8_in->byte_8_out, c=0xe1
+   Fisher's combined p-value: 0.000e+00
+   Average bias: 1.34x
+
+================================================================================
+DETAILED STATISTICAL ANALYSIS for c=0xe1, byte_8_in->byte_8_out
+================================================================================
+DISTRIBUTION PROPERTIES:
+  Total unique pairs observed: 65,280
+  Mean/Median/Std Dev count: 76.30 / 76.00 / 8.71
+  Max/Min count: 114 / 43
+  Skewness/Kurtosis: 0.123 / 0.013
+
+ENHANCED BIAS METRICS:
+  KL Divergence: 0.006531
+  Max Chi-square: 18.63
+  Relative Entropy: 0.999
+
+NORMALITY TESTS (on the distribution of observed counts):
+  Shapiro-Wilk Test: Skipped. Reason: Dataset too large for Shapiro-Wilk (N >= 5000)
+  Anderson-Darling Test: Statistic=44.935
+    Critical Values (Sig Levels): [0.576, 0.656, 0.787, 0.918, 1.092] ([15.0, 10.0, 5.0, 2.5, 1.0])
+    (Interpretation: Statistic > Critical Value at a given significance level suggests non-normal distribution)
+
+GOODNESS-OF-FIT TESTS (vs. Uniform Distribution):
+  (Evaluates if the overall distribution of 65,280 pairs is uniform. Degrees of freedom: 65,279)
+  Chi-square Test: Statistic=64,933.55, P-value=8.304e-01
+  G-test (Log-likelihood): Statistic=65,052.92, P-value=7.339e-01
+    (Interpretation: A very small P-value, e.g., < 0.001, provides strong evidence that the cipher's
+     output for this configuration is not uniformly distributed as a whole.)
+
+CLUSTER ANALYSIS:
+  Found 1 clusters, 0 significant
+  Cluster 1: 65280 members, combined p=1.000e+00, avg bias=1.00x
+
+SIGNIFICANT DIFFERENTIAL PAIRS (FDR-corrected p < 5.023e-03):
+  (These are specific (Input Diff, Output Diff) pairs whose observed frequencies
+   are statistically different from expected, after multiple-test correction.)
+  No pairs met the corrected significance threshold.
+================================================================================
+
+🔬 COMBINED EVIDENCE ALERT: Strong combined signal detected!
+   strong_bias: 33 signals, combined p=1.921e-67
+   moderate_bias: 2841 signals, combined p=0.000e+00
+   weak_significant: 10954 signals, combined p=0.000e+00
+   combined_moderate: 365 signals, combined p=0.000e+00
+
+
+Analysis complete in 6639.65 seconds.
+
+
+========================================================================================================================================================================================================
+SUMMARY OF ENHANCED SENSITIVITY FINDINGS
+========================================================================================================================================================================================================
+Found 36 configurations with noteworthy results:
+c      Config Description             Max Bias   FDR Sig    Raw Sig    Min FDR P       Comb.Ev  Seq.Disc  Top Input (A)                       Top Output (B)                     
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**0x01  byte_0_in->byte_0_out          9.5x       10909      17383      0.00e+00        Yes      Yes       0x00000000000000000000000000000076  0x0000000000000000000000000000006b 
+**0x01  byte_12_in->byte_12_out        10.2x      10990      17503      0.00e+00        Yes      Yes       0x0000009e000000000000000000000000  0x0000007e000000000000000000000000 
+**0x01  byte_2_in->byte_2_out          10.6x      10989      17445      0.00e+00        Yes      Yes       0x00000000000000000000000000fc0000  0x00000000000000000000000000a80000 
+**0x01  byte_2_in->byte_3_out          10.2x      10923      17340      0.00e+00        Yes      Yes       0x00000000000000000000000000400000  0x00000000000000000000000046000000 
+**0x01  byte_6_in->byte_6_out          10.7x      11038      17378      0.00e+00        Yes      Yes       0x00000000000000000040000000000000  0x000000000000000000bb000000000000 
+**0x01  byte_8_in->byte_8_out          9.7x       10941      17464      0.00e+00        Yes      Yes       0x00000000000000170000000000000000  0x00000000000000900000000000000000 
+†0x91  byte_8_in->byte_8_out          1.7x       0          2931       1.56e-02        Yes      No        N/A                                 N/A                                
+†0x03  byte_12_in->byte_12_out        1.6x       0          2936       5.94e-02        Yes      No        N/A                                 N/A                                
+†0x04  byte_4_in->byte_4_out          1.6x       0          2865       1.22e-01        Yes      No        N/A                                 N/A                                
+†0x03  byte_10_in->byte_10_out        1.6x       0          3077       1.87e-01        Yes      No        N/A                                 N/A                                
+†0xe1  byte_4_in->byte_5_out          1.5x       0          2987       2.45e-01        Yes      No        N/A                                 N/A                                
+†0xbe  byte_14_in->byte_14_out        1.6x       0          2974       4.44e-01        Yes      No        N/A                                 N/A                                
+†0xbe  byte_6_in->byte_6_out          1.5x       0          2801       4.57e-01        Yes      No        N/A                                 N/A                                
+†0xe1  byte_2_in->byte_2_out          1.5x       0          2910       4.79e-01        Yes      No        N/A                                 N/A                                
+†0x91  byte_0_in->byte_1_out          1.6x       0          2985       4.79e-01        Yes      No        N/A                                 N/A                                
+†0xbe  byte_14_in->byte_15_out        1.5x       0          2937       5.69e-01        Yes      No        N/A                                 N/A                                
+†0x02  byte_14_in->byte_15_out        1.5x       0          2872       5.87e-01        Yes      No        N/A                                 N/A                                
+†0x04  byte_2_in->byte_2_out          1.5x       0          2965       6.16e-01        Yes      No        N/A                                 N/A                                
+†0x02  byte_8_in->byte_8_out          1.5x       0          2926       6.94e-01        Yes      No        N/A                                 N/A                                
+†0x91  byte_2_in->byte_2_out          1.5x       0          2916       7.14e-01        Yes      No        N/A                                 N/A                                
+†0xe1  byte_4_in->byte_4_out          1.5x       0          2961       7.27e-01        Yes      No        N/A                                 N/A                                
+†0xbe  byte_0_in->byte_0_out          1.5x       0          2888       7.36e-01        Yes      No        N/A                                 N/A                                
+†0x02  byte_0_in->byte_1_out          1.5x       0          2873       7.66e-01        Yes      No        N/A                                 N/A                                
+†0xbe  byte_2_in->byte_2_out          1.5x       0          2967       7.78e-01        Yes      No        N/A                                 N/A                                
+†0x91  byte_4_in->byte_4_out          1.5x       0          3045       7.88e-01        Yes      No        N/A                                 N/A                                
+†0x91  byte_0_in->byte_0_out          1.5x       0          2984       8.32e-01        Yes      No        N/A                                 N/A                                
+†0xe1  byte_6_in->byte_6_out          1.5x       0          3019       8.54e-01        Yes      No        N/A                                 N/A                                
+†0x02  byte_2_in->byte_2_out          1.5x       0          2827       8.55e-01        Yes      No        N/A                                 N/A                                
+†0x03  byte_0_in->byte_0_out          1.5x       0          2906       9.14e-01        Yes      No        N/A                                 N/A                                
+†0x02  byte_12_in->byte_12_out        1.5x       0          2855       9.24e-01        Yes      No        N/A                                 N/A                                
+†0xe1  byte_12_in->byte_12_out        1.5x       0          2914       9.46e-01        Yes      No        N/A                                 N/A                                
+†0x04  byte_8_in->byte_8_out          1.5x       0          2937       9.59e-01        Yes      No        N/A                                 N/A                                
+†0xe1  byte_8_in->byte_8_out          1.5x       0          2912       9.71e-01        Yes      No        N/A                                 N/A                                
+†0x03  byte_4_in->byte_4_out          1.5x       0          2936       9.84e-01        Yes      No        N/A                                 N/A                                
+†0x91  byte_12_in->byte_12_out        1.5x       0          2978       9.94e-01        Yes      No        N/A                                 N/A                                
+†0x03  byte_6_in->byte_6_out          1.5x       0          3024       9.96e-01        Yes      No        N/A                                 N/A                                
+
+Legend: ** = FDR-significant, † = Combined evidence, § = Sequential discovery, * = 5+ uncorrected significant
