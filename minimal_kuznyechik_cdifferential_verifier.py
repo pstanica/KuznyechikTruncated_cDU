@@ -18,6 +18,18 @@ for the no-initial-whitening Kuznyechik round core.
 
 Byte numbering in command-line parameters is 1-based from the left/MSB:
 byte 1 is the most significant byte and byte 16 is the least significant byte.
+
+Run it with something like:
+
+python3 minimal_kuznyechik_cdifferential_verifier.py \
+  --rounds 9 \
+  --c 0x04 \
+  --input-byte 8 \
+  --output-byte 8 \
+  --a 29 \
+  --b 8d \
+  --seed 42 \
+  --trials 5000000
 """
 
 from __future__ import annotations
