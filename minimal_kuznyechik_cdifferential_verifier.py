@@ -29,7 +29,9 @@ python3 minimal_kuznyechik_cdifferential_verifier.py \
   --a 29 \
   --b 8d \
   --seed 42 \
-  --trials 5000000
+  --trials 100000
+
+  (perhaps change to 5000000 to be more accurate in the statistics)
 """
 
 from __future__ import annotations
