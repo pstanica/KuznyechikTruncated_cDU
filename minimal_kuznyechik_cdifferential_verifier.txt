@@ -1,0 +1,27 @@
+python3 minimal_kuznyechik_cdifferential_verifier.py \
+  --rounds 9 \
+  --c 0x04 \
+  --input-byte 8 \
+  --output-byte 8 \
+  --a 29 \
+  --b 8d \
+  --seed 42 \
+  --trials 100000 
+
+
+Minimal masked inner c-differential verifier
+Kuznyechik implementation: RFC 7801 key schedule/encryption test passed
+model                       : no initial key whitening
+rounds                      : 9
+master key                  : 0x8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef
+c                           : 0x04
+input byte / output byte    : 8 -> 8 (1-based, MSB first)
+a                           : 0x00000000000000290000000000000000
+b                           : 0x000000000000008d0000000000000000
+seed                        : 42
+trials                      : 100,000
+elapsed seconds             : 54.25
+observed count              : 402
+random-baseline expectation : 390.625
+bias ratio                  : 1.02912 x
+two-sided binomial p-value  : 0.581418  (normal approximation)
