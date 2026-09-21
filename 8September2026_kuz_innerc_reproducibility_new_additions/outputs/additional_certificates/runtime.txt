@@ -1,0 +1,1 @@
+caffeinate -i python verify_additional_certificates.py --out  --c 0x04  100    7.91s user 0.72s system 170% cpu 5.069 total

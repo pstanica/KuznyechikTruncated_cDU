@@ -1,0 +1,333 @@
+{
+  "model": "two-round standard Kuznyechik with initial whitening and RFC key schedule",
+  "c": "0x04",
+  "total_failure_bound_target": 0.01,
+  "stage1_failure_budget": 0.005,
+  "stage2_failure_budget": 0.005,
+  "stage1_samples_per_byte": 14117,
+  "stage2_samples_per_byte": 40,
+  "stage1": {
+    "c": "0x04",
+    "samples_per_byte": 14117,
+    "base_seed": 20260904,
+    "true_whitening_key": "8899aabbccddeeff0011223344556677",
+    "recovered_whitening_key": "8899aabbccddeeff0011223344556677",
+    "success": true,
+    "chosen_plaintext_queries_with_reused_base": 239989,
+    "chosen_plaintext_pairs": 225872,
+    "details": [
+      {
+        "j": 0,
+        "true": 136,
+        "recovered": 136,
+        "runner_up": 153,
+        "loglikelihood_margin": 68.82329227362061,
+        "i": 11,
+        "coef": 189
+      },
+      {
+        "j": 1,
+        "true": 153,
+        "recovered": 153,
+        "runner_up": 58,
+        "loglikelihood_margin": 60.765327844244894,
+        "i": 12,
+        "coef": 233
+      },
+      {
+        "j": 2,
+        "true": 170,
+        "recovered": 170,
+        "runner_up": 171,
+        "loglikelihood_margin": 56.63243074994534,
+        "i": 4,
+        "coef": 107
+      },
+      {
+        "j": 3,
+        "true": 187,
+        "recovered": 187,
+        "runner_up": 228,
+        "loglikelihood_margin": 58.871155032044044,
+        "i": 9,
+        "coef": 47
+      },
+      {
+        "j": 4,
+        "true": 204,
+        "recovered": 204,
+        "runner_up": 95,
+        "loglikelihood_margin": 55.865314469105215,
+        "i": 11,
+        "coef": 233
+      },
+      {
+        "j": 5,
+        "true": 221,
+        "recovered": 221,
+        "runner_up": 161,
+        "loglikelihood_margin": 42.07481553466641,
+        "i": 5,
+        "coef": 188
+      },
+      {
+        "j": 6,
+        "true": 238,
+        "recovered": 238,
+        "runner_up": 213,
+        "loglikelihood_margin": 38.24299276089005,
+        "i": 13,
+        "coef": 90
+      },
+      {
+        "j": 7,
+        "true": 255,
+        "recovered": 255,
+        "runner_up": 85,
+        "loglikelihood_margin": 47.883284925716,
+        "i": 13,
+        "coef": 224
+      },
+      {
+        "j": 8,
+        "true": 0,
+        "recovered": 0,
+        "runner_up": 135,
+        "loglikelihood_margin": 62.76472648161871,
+        "i": 0,
+        "coef": 10
+      },
+      {
+        "j": 9,
+        "true": 17,
+        "recovered": 17,
+        "runner_up": 214,
+        "loglikelihood_margin": 49.97258535664878,
+        "i": 9,
+        "coef": 84
+      },
+      {
+        "j": 10,
+        "true": 34,
+        "recovered": 34,
+        "runner_up": 226,
+        "loglikelihood_margin": 59.27654820944008,
+        "i": 8,
+        "coef": 42
+      },
+      {
+        "j": 11,
+        "true": 51,
+        "recovered": 51,
+        "runner_up": 112,
+        "loglikelihood_margin": 55.96453644799476,
+        "i": 7,
+        "coef": 177
+      },
+      {
+        "j": 12,
+        "true": 68,
+        "recovered": 68,
+        "runner_up": 4,
+        "loglikelihood_margin": 68.43305332791351,
+        "i": 2,
+        "coef": 159
+      },
+      {
+        "j": 13,
+        "true": 85,
+        "recovered": 85,
+        "runner_up": 246,
+        "loglikelihood_margin": 46.476597398825106,
+        "i": 7,
+        "coef": 42
+      },
+      {
+        "j": 14,
+        "true": 102,
+        "recovered": 102,
+        "runner_up": 18,
+        "loglikelihood_margin": 50.04928332431882,
+        "i": 3,
+        "coef": 232
+      },
+      {
+        "j": 15,
+        "true": 119,
+        "recovered": 119,
+        "runner_up": 251,
+        "loglikelihood_margin": 54.45901812969532,
+        "i": 10,
+        "coef": 189
+      }
+    ]
+  },
+  "stage2": {
+    "c": "0x04",
+    "samples_per_byte": 40,
+    "true_second_master_half": "fedcba98765432100123456789abcdef",
+    "recovered_second_master_half": "fedcba98765432100123456789abcdef",
+    "success": true,
+    "chosen_plaintext_pairs": 640,
+    "chosen_plaintext_queries_with_reused_base": 680,
+    "details": [
+      {
+        "j": 0,
+        "true": 254,
+        "recovered": 254,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 1,
+        "true": 220,
+        "recovered": 220,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 2,
+        "true": 186,
+        "recovered": 186,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 3,
+        "true": 152,
+        "recovered": 152,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 4,
+        "true": 118,
+        "recovered": 118,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 5,
+        "true": 84,
+        "recovered": 84,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 6,
+        "true": 50,
+        "recovered": 50,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 7,
+        "true": 16,
+        "recovered": 16,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 8,
+        "true": 1,
+        "recovered": 1,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 9,
+        "true": 35,
+        "recovered": 35,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 10,
+        "true": 69,
+        "recovered": 69,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 11,
+        "true": 103,
+        "recovered": 103,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 12,
+        "true": 137,
+        "recovered": 137,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 13,
+        "true": 171,
+        "recovered": 171,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 14,
+        "true": 205,
+        "recovered": 205,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      },
+      {
+        "j": 15,
+        "true": 239,
+        "recovered": 239,
+        "runner_up": null,
+        "loglikelihood_margin": null,
+        "decision_status": "all 255 alternative candidates excluded by observed support"
+      }
+    ]
+  },
+  "true_master_key": "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef",
+  "recovered_master_key": "8899aabbccddeeff0011223344556677fedcba98765432100123456789abcdef",
+  "success": true,
+  "total_chosen_plaintext_pairs": 226512,
+  "total_chosen_plaintext_queries": 240669,
+  "rigorous_union_bound_note": "stage1 failure <= eps1 and stage2 failure <= eps2; hence total failure <= eps1+eps2",
+  "base_theorem_audit": {
+    "sbox_permutation": true,
+    "ddt_row_sum": 256,
+    "classical_du_nonzero": 8,
+    "degree_rank_bound_all_c": true,
+    "max_degree_rank_slack": 0,
+    "selected_inner_double_stochasticity": true,
+    "selected_inverse_symmetry": true,
+    "energy_row_correlation_all_c": true,
+    "energy_conservation_sum": 33423360
+  },
+  "second_half_design": {
+    "c": 4,
+    "unique_inner_rows": 256,
+    "rho": 0.7074682424211026,
+    "Dmin": 0.34606253750950833,
+    "hard_row_1": 61,
+    "hard_row_2": 90,
+    "total_error_target": 0.005,
+    "samples_per_byte_all16_bound": 40,
+    "chosen_plaintext_pairs": 640,
+    "chosen_plaintext_queries_with_reused_base": 680
+  }
+}

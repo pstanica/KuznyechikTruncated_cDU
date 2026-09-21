@@ -1,0 +1,6 @@
+Python 3.11.8
+NumPy 2.4.6
+SciPy 1.17.1
+ProductName:		macOS
+ProductVersion:		13.3
+BuildVersion:		22E252

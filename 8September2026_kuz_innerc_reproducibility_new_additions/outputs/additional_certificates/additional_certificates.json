@@ -1,0 +1,29 @@
+{
+  "rfc_7801_regression_tests": "PASS",
+  "nonzero_ddt_block": {
+    "dimension": 255,
+    "modulus": 5,
+    "determinant_modulo_prime": 1,
+    "nonsingular": true
+  },
+  "row_distinctness_and_rank": {
+    "multipliers_checked": 255,
+    "all_inner_tables_have_256_pairwise_distinct_rows": true,
+    "all_same_representative_disagreement_ranks_equal_degree": true,
+    "output_file": "inner_table_row_distinctness.csv"
+  },
+  "spectral": {
+    "method": "largest singular value of P W_* P, where P projects onto the zero-sum subspace",
+    "sigma_perp": 0.21027588246191822,
+    "sigma_perp_squared": 0.04421594674513845
+  },
+  "random_key_stage2": {
+    "multiplier": "0x04",
+    "samples_per_byte": 40,
+    "seed": 20260906,
+    "trials": 100,
+    "successes": 100,
+    "failures": 0,
+    "output_file": "random_key_stage2_trials.csv"
+  }
+}
