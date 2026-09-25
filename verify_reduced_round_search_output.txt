@@ -1,0 +1,44 @@
+Kuznyechik reduced-round deterministic verification
+====================================================
+No RNG is used. All reported families are exhaustively enumerated.
+
+Two rounds, post-L1 weight one
+c=01: exponent 89.1503749928; k=4, beta=0c; round costs 83.7353374935+5.4150374993
+       first-layer counts: (6, 8, 6, 8, 8, 6, 8, 8, 6, 6, 6, 8, 6, 6, 6, 8)
+c=02: exponent 83.9801201948; k=2, beta=91; round costs 77.9801201948+6.0000000000
+       first-layer counts: (4, 7, 64, 6, 64, 64, 5, 4, 5, 6, 6, 8, 5, 5, 9, 4)
+c=e1: exponent 83.9801201948; k=2, beta=91; round costs 77.9801201948+6.0000000000
+       first-layer counts: (4, 7, 64, 6, 64, 64, 5, 4, 5, 6, 6, 8, 5, 5, 9, 4)
+c=04: exponent 89.9814374296; k=13, beta=f0; round costs 84.5663999303+5.4150374993
+       first-layer counts: (5, 20, 5, 33, 5, 5, 4, 5, 9, 4, 4, 5, 5, 5, 4, 20)
+c=03: exponent 91.1954853492; k=2, beta=ac; round costs 85.7804478500+5.4150374993
+       first-layer counts: (4, 4, 21, 6, 21, 21, 6, 4, 4, 4, 6, 5, 5, 5, 5, 4)
+
+Three rounds, 16 -> 1 -> 16
+c=01: exponent 174.3007499856; k=4, beta=0c, gamma=e2; round costs 83.7353374935+5.4150374993+85.1503749928
+       third-layer counts: (4, 6, 6, 8, 6, 6, 8, 6, 6, 6, 8, 8, 6, 6, 8, 6)
+c=02: exponent 169.7154576883; k=2, beta=91, gamma=f0; round costs 77.9801201948+6.0000000000+85.7353374935
+       third-layer counts: (6, 8, 8, 6, 4, 6, 6, 6, 8, 6, 6, 8, 8, 4, 6, 6)
+c=e1: exponent 169.7154576883; k=2, beta=91, gamma=f0; round costs 77.9801201948+6.0000000000+85.7353374935
+c=04: exponent 175.9156990639; k=2, beta=8e, gamma=fa; round costs 84.9352490726+6.0000000000+84.9804499913
+c=03: exponent 177.3458603420; k=2, beta=ac, gamma=82; round costs 85.7804478500+7.0000000000+84.5654124921
+
+Post-L1 weight two: exhaustively checked 7,803,000 boundaries
+c=01: exponent 93.3202999942; positions=(4,12), values=(51,8f)
+c=02: exponent 85.9983718993; positions=(0,2), values=(74,82)
+c=e1: exponent 85.9983718993; positions=(0,2), values=(74,82)
+c=04: exponent 90.5738722331; positions=(8,12), values=(5d,ed)
+c=03: exponent 94.0479506277; positions=(2,9), values=(14,95)
+
+Four rounds, 16 -> 1 -> 16 -> 1 (exhaustive within this topology)
+c=01: exponent 200.8105249899; k=1, beta=58, gamma=dd, next-pos=0, delta=3a; costs 84.5654124921+7.0000000000+103.8300749986+5.4150374993
+       third-layer counts: (4, 2, 6, 2, 2, 2, 4, 2, 4, 2, 6, 4, 2, 2, 4, 2)
+c=02: exponent 199.2479527691; k=1, beta=77, gamma=dd, next-pos=0, delta=3a; costs 83.0028402713+7.0000000000+103.8300749986+5.4150374993
+       third-layer counts: (4, 2, 6, 2, 2, 2, 4, 2, 4, 2, 6, 4, 2, 2, 4, 2)
+c=e1: exponent 199.2479527691; k=1, beta=77, gamma=dd, next-pos=0, delta=3a; costs 83.0028402713+7.0000000000+103.8300749986+5.4150374993
+c=04: exponent 204.0630511952; k=1, beta=4b, gamma=dd, next-pos=0, delta=3a; costs 87.8179386973+7.0000000000+103.8300749986+5.4150374993
+c=03: exponent 205.0553076912; k=1, beta=fb, gamma=dd, next-pos=0, delta=3a; costs 88.8101951933+7.0000000000+103.8300749986+5.4150374993
+
+Regression assertions: PASS
+Note: the exhaustive four-round values differ from the older manuscript values 202.7/202.8;
+the values printed above are the reconstructed optima for the stated topology.
